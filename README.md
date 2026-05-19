@@ -1,64 +1,86 @@
 # claude-skills
 
-Claude(Cowork / Claude Code / Agent SDK)에서 사용할 수 있는 **한국형 Skill 모음**입니다.
-한컴 한글(hwpx) 양식 자동 채우기와 McKinsey·BCG 스타일 PowerPoint 생성에 특화된 두 가지 스킬을 제공합니다.
+Claude 가 한 번에 알아서 처리하도록 도와주는 **스킬(Skill) 모음**입니다. 비개발자도 쉽게 쓰실 수 있도록 정리했습니다.
 
-## 포함 스킬
+이 레포에는 두 가지 스킬이 있습니다.
 
-| Skill | 한 줄 설명 | 패키지 |
+| 스킬 | 무엇을 해주나요 | 받기 |
 |---|---|---|
-| [`hwpx-autofill-conversion`](skills/hwpx-autofill-conversion/) | 한컴 한글 `.hwpx` 양식을 첨부하면 해당 양식 구조(XML)에 맞춰 원하는 주제로 본문을 자동 작성 후 `.hwpx`로 재패키징 | [`dist/hwpx-autofill-conversion.skill`](dist/hwpx-autofill-conversion.skill) |
-| [`ppt-maker`](skills/ppt-maker/) | Brandlogy 디자인 시스템(Pretendard 전용, 5존 고정 레이아웃, Pyramid Principle)에 따라 컨설팅급 PowerPoint(.pptx) 자동 생성 | [`dist/ppt-maker.skill`](dist/ppt-maker.skill) |
+| **hwpx-autofill-conversion** | 한글(`.hwpx`) 양식 파일을 주면, 양식 모양은 그대로 두고 주제만 새 내용으로 채워서 다시 `.hwpx` 로 돌려줍니다. | [hwpx-autofill-conversion.skill](hwpx-autofill-conversion.skill) |
+| **ppt-maker** | 자료나 요약을 주면 맥킨지·BCG 컨설팅 스타일의 PowerPoint 슬라이드를 자동으로 만들어 줍니다. | [ppt-maker.skill](ppt-maker.skill) |
 
-## 설치 방법
+## 다운로드 받는 방법
 
-### 1. `.skill` 파일로 설치 (권장)
+1. 위 표의 **받기** 열에 있는 링크를 클릭합니다.
+2. GitHub 화면 오른쪽에 **다운로드 버튼(↓)** 이 보입니다. 누르면 `.skill` 파일이 다운로드됩니다.
+   - 또는 파일 이름 오른쪽의 **`Raw`** 버튼 → **마우스 오른쪽 클릭 → 다른 이름으로 저장**
+3. 파일 두 개를 각각 다운로드하시면 됩니다.
 
-[Releases](../../releases) 또는 [`dist/`](dist/) 폴더에서 원하는 `.skill` 파일을 받아 Claude 환경의 skills 디렉터리에 풉니다.
+> 컴퓨터가 `.skill` 확장자를 모르는 파일이라고 경고할 수 있는데, 정상입니다. 그냥 저장하시면 됩니다.
 
-```bash
-# 예시: 사용자 스킬 디렉터리에 풀기
-unzip hwpx-autofill-conversion.skill -d ~/.claude/skills/hwpx-autofill-conversion
-unzip ppt-maker.skill -d ~/.claude/skills/ppt-maker
-```
+## 설치하는 방법 (Claude 데스크톱 / Cowork)
 
-> `.skill` 파일은 단순한 ZIP 아카이브입니다. 확장자만 다를 뿐 내부에는 `SKILL.md`와 부속 파일이 들어있습니다.
+1. Claude 앱을 엽니다.
+2. **설정(Settings) → Skills(스킬)** 메뉴로 이동합니다.
+3. **"스킬 추가" 또는 "Install skill"** 버튼을 누릅니다.
+4. 방금 다운로드한 `.skill` 파일을 선택합니다.
+5. 두 파일 모두 같은 방법으로 추가하시면 끝입니다.
 
-### 2. 폴더 그대로 복사
+설치가 끝나면 Claude 가 자동으로 인식해서, 아래 예시 같은 부탁을 했을 때 알아서 해당 스킬을 사용합니다.
 
-`skills/` 아래의 폴더를 그대로 Claude skills 경로에 복사해도 동작합니다.
+## 사용 예시
 
-```bash
-cp -r skills/hwpx-autofill-conversion ~/.claude/skills/
-cp -r skills/ppt-maker ~/.claude/skills/
-```
+### hwpx-autofill-conversion 스킬 부르는 말
 
-### 3. Claude Code Plugin Marketplace 형태
+대화창에 한글(.hwpx) 양식 파일을 끌어다 놓고 아래처럼 입력하세요.
 
-이 레포 자체를 플러그인/스킬 마켓플레이스로 등록해 팀원과 공유할 수도 있습니다. 자세한 내용은 [Anthropic Skills 문서](https://docs.claude.com)를 참고하세요.
+- "이 양식 그대로 두고 **'청년 창업 지원 사업 계획'** 으로 내용 채워줘"
+- "양식 모양 안 바꾸고 주제만 **'2026년 ○○ 보고서'** 로 작성해줘"
+- "이 보고서 양식 hwpx 그대로 살려서 ○○ 내용으로 다시 만들어줘"
 
-## 스킬 트리거 예시
+➡️ Claude 가 양식 구조(글꼴·표·페이지 모양)는 건드리지 않고, 본문 글자만 새 주제로 채워서 `.hwpx` 파일을 새로 만들어 보내줍니다.
 
-### hwpx-autofill-conversion
+### ppt-maker 스킬 부르는 말
 
-- "이 hwpx 양식 그대로 살리고 주제만 '○○○ 사업 계획'으로 채워줘"
-- "첨부한 보고서 양식에 맞춰서 내용 작성해줘 (hwpx 결과로)"
+자료(워드, PDF, 표 등)를 첨부하거나, 만들고 싶은 내용을 글로 적어주세요.
 
-### ppt-maker
+- "이 자료로 **컨설팅 스타일 발표 자료** 만들어줘"
+- "**맥킨지 스타일** 16:9 PPT로 정리해줘"
+- "**임원 보고용** 10장짜리 전략 슬라이드 만들어줘"
+- "이 분기 실적 자료를 **Brandlogy 디자인**으로 PPT 만들어줘"
 
-- "이 자료로 컨설팅 스타일 PPT 만들어줘"
-- "McKinsey 스타일 16:9 발표 자료로 정리해줘"
-- "Brandlogy 디자인 시스템으로 8장짜리 전략 보고서 슬라이드"
+➡️ Claude 가 자동으로:
+
+- 모든 슬라이드에 **Pretendard** 폰트를 적용
+- 5존(머리/제목/부제/본문/꼬리) 위치를 모든 슬라이드에서 동일하게 유지
+- 데이터·비교·프로세스는 글이 아닌 **차트·도표**로 표현
+- "한 슬라이드 한 메시지" (Pyramid Principle) 구조로 정리
+- 본문 박스 아래쪽이 비지 않도록 꽉 채움
+
+해서 `.pptx` 파일을 만들어 보내줍니다.
+
+## 자주 묻는 질문
+
+**Q. `.skill` 파일이 뭔가요?**
+A. 스킬 하나를 통째로 담은 압축 파일입니다(내부적으로는 ZIP). Claude 앱이 알아서 풀어서 설치합니다.
+
+**Q. 설치 후 따로 켜야 하나요?**
+A. 아니요. 설치하면 Claude 가 대화 내용을 보고 스스로 필요한 스킬을 골라 씁니다. "○○ 스킬 써줘" 라고 굳이 안 시켜도 됩니다.
+
+**Q. 잘 작동하는지 어떻게 확인하나요?**
+A. 위 "사용 예시"의 문장을 그대로 한 번 입력해보세요. Claude 가 답변 시작 부분에 어떤 스킬을 쓰고 있는지 보여줄 때가 있고, 결과로 `.hwpx` 또는 `.pptx` 파일을 만들어주면 정상입니다.
+
+**Q. 스킬을 빼고 싶을 때는요?**
+A. **설정 → Skills** 에서 해당 스킬 옆 **삭제 / Remove** 버튼을 누르시면 됩니다.
+
+**Q. 같은 스킬 새 버전이 올라오면요?**
+A. 이 레포에 최신 버전이 올라옵니다. 다시 다운로드 → 설치 화면에서 **덮어쓰기** 해주시면 됩니다.
+
+## 문의·요청
+
+- 새로운 스킬이 필요하시면 **Issues** 탭에 글 남겨주세요.
+- 사용 중 오류가 나면 **Issues** 에 상황(어떤 입력을 줬는지, 결과가 어땠는지) 적어주시면 도와드립니다.
 
 ## 라이선스
 
-별도 명시가 없는 한 MIT License로 배포합니다. 자유롭게 사용·수정·재배포 가능합니다.
-
-## 기여
-
-PR/Issue 환영합니다. 새 스킬 추가 시 다음 규칙을 지켜주세요.
-
-1. 스킬은 `skills/<skill-name>/SKILL.md` 형식으로 작성
-2. SKILL.md 상단에 frontmatter(`name`, `description`) 필수
-3. 빌드 후 `dist/<skill-name>.skill` ZIP 산출물 동봉
-4. 한국어 사용자 대상 README는 한국어로 작성
+[MIT License](LICENSE) — 자유롭게 사용·수정·재배포하실 수 있습니다.
