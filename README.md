@@ -8,7 +8,7 @@ Claude 가 한 번에 알아서 처리하도록 도와주는 **스킬(Skill) 모
 |---|---|---|
 | **hwpx-autofill-conversion** | 한글(`.hwpx`) 양식 파일을 주면, 양식 모양은 그대로 두고 주제만 새 내용으로 채워서 다시 `.hwpx` 로 돌려줍니다. | [hwpx-autofill-conversion.skill](hwpx-autofill-conversion.skill) |
 | **ppt-maker** | 자료나 요약을 주면 맥킨지·BCG 컨설팅 스타일의 PowerPoint 슬라이드를 자동으로 만들어 줍니다. | [ppt-maker.skill](ppt-maker.skill) |
-| **Pretendard 글꼴** *(필수 설치)* | hwpx·ppt 결과물이 깔끔하게 보이도록 컴퓨터에 미리 설치해 두는 한국어 폰트입니다. | [fonts/Pretendard.zip](fonts/Pretendard.zip) |
+| **Pretendard 글꼴**<br>*(필수 설치)* | hwpx·ppt 결과물이 깔끔하게 보이도록 컴퓨터에 미리 설치해 두는 한국어 폰트입니다. | [fonts/Pretendard.zip](fonts/Pretendard.zip) |
 
 ## 다운로드 받는 방법
 
